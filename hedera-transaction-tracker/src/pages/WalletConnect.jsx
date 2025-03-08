@@ -26,6 +26,7 @@ const WalletConnect = () => {
     try {
       setIsLoading(true);
       
+      
       // Initialize HashConnect with proper configuration
       const initData = await hashConnect.init(hashConnectConfig.metaData, hashConnectConfig.network, false);
       await hashConnect.connect(hashConnectConfig.network, initData);
