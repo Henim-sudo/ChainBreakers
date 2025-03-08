@@ -15,15 +15,15 @@ const Sidebar = () => {
       variant="permanent"
       anchor="left"
       sx={{
-        width: { xs: 200, md: 240 },
+        width: { xs: 220, md: 260 },
         flexShrink: 0,
         '& .MuiDrawer-paper': {
-          width: { xs: 200, md: 240 },
+          width: { xs: 220, md: 260 },
           boxSizing: 'border-box',
-          background: `linear-gradient(180deg, ${theme.palette.primary.main}, ${theme.palette.primary.dark})`,
+          background: `linear-gradient(165deg, ${theme.palette.primary.dark}, #1a237e)`,
           color: 'white',
-          borderRight: 'none',
-          boxShadow: '4px 0 10px rgba(0,0,0,0.1)',
+          borderRight: '1px solid rgba(255,255,255,0.08)',
+          boxShadow: '4px 0 25px rgba(0,0,0,0.15)',
           transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
@@ -35,47 +35,54 @@ const Sidebar = () => {
         display: 'flex', 
         flexDirection: 'column',
         height: '100%',
-        pt: { xs: '70px', sm: '75px', md: '80px' },
+        pt: { xs: '75px', sm: '80px', md: '85px' },
+        background: 'rgba(255,255,255,0.03)'
       }}>
         <Typography
           variant="h6"
           sx={{
-            p: 1.5,
+            p: 2,
             textAlign: 'center',
-            fontWeight: 700,
-            letterSpacing: '0.5px',
-            borderBottom: '1px solid rgba(255,255,255,0.15)',
-            textShadow: '2px 2px 4px rgba(0,0,0,0.2)',
-            fontSize: { xs: '1rem', md: '1.15rem' }
+            fontWeight: 800,
+            letterSpacing: '1px',
+            borderBottom: '2px solid rgba(255,255,255,0.1)',
+            textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
+            fontSize: { xs: '1.1rem', md: '1.25rem' },
+            background: `linear-gradient(90deg, ${theme.palette.primary.light}, #fff)`,
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
           }}
         >
           Navigation
         </Typography>
         
-        <List sx={{ flex: 1, p: 1.5, gap: 0.5 }}>
+        <List sx={{ flex: 1, p: 2, gap: 1 }}>
           <ListItem 
             button 
             component={Link} 
             to="/"
             sx={{
-              borderRadius: 2,
-              mb: 1,
-              transition: 'all 0.3s ease',
+              borderRadius: 3,
+              mb: 1.5,
+              backdropFilter: 'blur(10px)',
+              backgroundColor: 'rgba(255,255,255,0.05)',
+              transition: 'all 0.4s ease',
               '&:hover': {
                 backgroundColor: 'rgba(255,255,255,0.15)',
-                transform: 'translateX(5px)',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+                transform: 'translateX(8px) scale(1.02)',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
               }
             }}
           >
-            <ListItemIcon sx={{ color: 'white', minWidth: 35 }}>
-              <DashboardIcon />
+            <ListItemIcon sx={{ color: '#fff', minWidth: 40 }}>
+              <DashboardIcon sx={{ fontSize: '1.5rem' }}/>
             </ListItemIcon>
             <ListItemText 
               primary="Dashboard"
               primaryTypographyProps={{
-                fontSize: { xs: '0.85rem', md: '0.9rem' },
-                fontWeight: 600
+                fontSize: { xs: '0.9rem', md: '1rem' },
+                fontWeight: 700,
+                letterSpacing: '0.5px'
               }}
             />
           </ListItem>
@@ -85,24 +92,27 @@ const Sidebar = () => {
             component={Link} 
             to="/transactions"
             sx={{
-              borderRadius: 2,
-              mb: 1,
-              transition: 'all 0.3s ease',
+              borderRadius: 3,
+              mb: 1.5,
+              backdropFilter: 'blur(10px)',
+              backgroundColor: 'rgba(255,255,255,0.05)',
+              transition: 'all 0.4s ease',
               '&:hover': {
                 backgroundColor: 'rgba(255,255,255,0.15)',
-                transform: 'translateX(5px)',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+                transform: 'translateX(8px) scale(1.02)',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
               }
             }}
           >
-            <ListItemIcon sx={{ color: 'white', minWidth: 35 }}>
-              <ReceiptIcon />
+            <ListItemIcon sx={{ color: '#fff', minWidth: 40 }}>
+              <ReceiptIcon sx={{ fontSize: '1.5rem' }}/>
             </ListItemIcon>
             <ListItemText 
               primary="Transactions"
               primaryTypographyProps={{
-                fontSize: { xs: '0.85rem', md: '0.9rem' },
-                fontWeight: 600
+                fontSize: { xs: '0.9rem', md: '1rem' },
+                fontWeight: 700,
+                letterSpacing: '0.5px'
               }}
             />
           </ListItem>
@@ -112,24 +122,27 @@ const Sidebar = () => {
             component={Link} 
             to="/wallet"
             sx={{
-              borderRadius: 2,
-              mb: 1,
-              transition: 'all 0.3s ease',
+              borderRadius: 3,
+              mb: 1.5,
+              backdropFilter: 'blur(10px)',
+              backgroundColor: 'rgba(255,255,255,0.05)',
+              transition: 'all 0.4s ease',
               '&:hover': {
                 backgroundColor: 'rgba(255,255,255,0.15)',
-                transform: 'translateX(5px)',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+                transform: 'translateX(8px) scale(1.02)',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
               }
             }}
           >
-            <ListItemIcon sx={{ color: 'white', minWidth: 35 }}>
-              <AccountBalanceWalletIcon />
+            <ListItemIcon sx={{ color: '#fff', minWidth: 40 }}>
+              <AccountBalanceWalletIcon sx={{ fontSize: '1.5rem' }}/>
             </ListItemIcon>
             <ListItemText 
               primary="Wallet"
               primaryTypographyProps={{
-                fontSize: { xs: '0.85rem', md: '0.9rem' },
-                fontWeight: 600
+                fontSize: { xs: '0.9rem', md: '1rem' },
+                fontWeight: 700,
+                letterSpacing: '0.5px'
               }}
             />
           </ListItem>
@@ -139,23 +152,26 @@ const Sidebar = () => {
             component={Link} 
             to="/settings"
             sx={{
-              borderRadius: 2,
-              transition: 'all 0.3s ease',
+              borderRadius: 3,
+              backdropFilter: 'blur(10px)',
+              backgroundColor: 'rgba(255,255,255,0.05)',
+              transition: 'all 0.4s ease',
               '&:hover': {
                 backgroundColor: 'rgba(255,255,255,0.15)',
-                transform: 'translateX(5px)',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+                transform: 'translateX(8px) scale(1.02)',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
               }
             }}
           >
-            <ListItemIcon sx={{ color: 'white', minWidth: 35 }}>
-              <SettingsIcon />
+            <ListItemIcon sx={{ color: '#fff', minWidth: 40 }}>
+              <SettingsIcon sx={{ fontSize: '1.5rem' }}/>
             </ListItemIcon>
             <ListItemText 
               primary="Settings"
               primaryTypographyProps={{
-                fontSize: { xs: '0.85rem', md: '0.9rem' },
-                fontWeight: 600
+                fontSize: { xs: '0.9rem', md: '1rem' },
+                fontWeight: 700,
+                letterSpacing: '0.5px'
               }}
             />
           </ListItem>

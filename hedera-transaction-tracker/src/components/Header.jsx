@@ -11,33 +11,33 @@ const Header = () => {
     <AppBar 
       position="fixed"
       sx={{
-        background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.primary.dark})`,
-        boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-        zIndex: theme.zIndex.drawer + 1, // Ensure header appears above sidebar
-        width: { xs: '100%', md: `calc(100% - 240px)` }, // Adjust width based on sidebar
-        ml: { xs: 0, md: '240px' }, // Add margin to account for sidebar on desktop
+        background: `linear-gradient(120deg, ${theme.palette.primary.dark}, #2c3e50)`,
+        boxShadow: '0 4px 30px rgba(0,0,0,0.2)',
+        backdropFilter: 'blur(10px)',
+        zIndex: theme.zIndex.drawer + 1,
+        width: '100%',
+        borderBottom: '1px solid rgba(255,255,255,0.1)'
       }}
     >
       <Toolbar sx={{ 
         minHeight: { xs: '64px', sm: '70px' },
-        pr: { xs: 1, sm: 2 }, // Add padding to prevent content from touching edges
+        justifyContent: 'space-between',
+        px: { xs: 2, sm: 4 }
       }}>
         <Typography 
           variant="h5" 
           component="div" 
           sx={{ 
-            flexGrow: 1,
             fontWeight: 700,
             fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.5rem' },
             letterSpacing: '0.5px',
             color: '#ffffff',
             textAlign: 'left',
-            marginLeft: { xs: '0px', sm: '10px' },
-            textShadow: '2px 2px 4px rgba(0,0,0,0.2)',
-            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontFamily: '"Poppins", "Roboto", sans-serif',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
-            textOverflow: 'ellipsis'
+            textOverflow: 'ellipsis',
+            maxWidth: { xs: '200px', sm: '400px', md: '600px' }
           }}
         >
           Hedera Real-Time Transaction Tracker
@@ -45,40 +45,36 @@ const Header = () => {
 
         <Box sx={{ 
           display: "flex", 
-          gap: { xs: 1, sm: 2 }, 
+          gap: 2,
           alignItems: 'center'
         }}>
           <Button
-            variant="contained"
-            color="secondary"
+            variant="outlined"
+            color="inherit"
             startIcon={<FilterListIcon />}
             size="medium"
             sx={{
-              borderRadius: '20px',
+              borderRadius: '8px',
               textTransform: 'none',
-              display: { xs: 'none', sm: 'flex' }, // Hide on mobile
-              boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+              display: { xs: 'none', sm: 'flex' },
+              borderColor: 'rgba(255,255,255,0.3)',
               '&:hover': {
-                transform: 'translateY(-2px)',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-              },
-              transition: 'all 0.2s ease-in-out'
+                borderColor: 'rgba(255,255,255,0.8)',
+                backgroundColor: 'rgba(255,255,255,0.1)'
+              }
             }}
           >
             Filters
           </Button>
 
           <IconButton 
-            color="secondary"
+            color="inherit"
             size="medium"
             aria-label="refresh"
             sx={{
-              backgroundColor: 'rgba(255,255,255,0.1)',
               '&:hover': {
-                backgroundColor: 'rgba(255,255,255,0.2)',
-                transform: 'rotate(180deg)',
-              },
-              transition: 'all 0.3s ease-in-out'
+                backgroundColor: 'rgba(255,255,255,0.1)'
+              }
             }}
           >
             <RefreshIcon />
@@ -90,23 +86,12 @@ const Header = () => {
             startIcon={<AccountBalanceWalletIcon />}
             size="medium"
             sx={{
-              borderRadius: '20px',
+              borderRadius: '8px',
               textTransform: 'none',
-              background: 'linear-gradient(45deg, #2196f3, #1976d2)',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-              minWidth: { xs: 'auto', sm: 'initial' }, // Compact on mobile
-              '& .MuiButton-startIcon': {
-                marginRight: { xs: 0, sm: 1 } // Hide text on mobile
-              },
-              '& .MuiButton-endIcon': {
-                margin: { xs: 0, sm: 1 }
-              },
+              backgroundColor: theme.palette.secondary.main,
               '&:hover': {
-                background: 'linear-gradient(45deg, #1976d2, #1565c0)',
-                transform: 'translateY(-2px)',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-              },
-              transition: 'all 0.2s ease-in-out'
+                backgroundColor: theme.palette.secondary.dark
+              }
             }}
           >
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>Connect Wallet</Box>

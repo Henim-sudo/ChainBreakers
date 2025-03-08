@@ -33,9 +33,16 @@ const LiveUpdates = () => {
         margin: 2,
         padding: 2,
         minHeight: 300,
-        borderRadius: 3,
-        boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-        background: `linear-gradient(145deg, ${theme.palette.background.paper}, ${theme.palette.background.default})`
+        borderRadius: 4,
+        boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+        background: `linear-gradient(165deg, ${theme.palette.background.paper} 0%, ${theme.palette.primary.light}15 100%)`,
+        backdropFilter: 'blur(10px)',
+        border: '1px solid rgba(255,255,255,0.18)',
+        transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+        '&:hover': {
+          transform: 'translateY(-5px)',
+          boxShadow: '0 12px 48px rgba(0,0,0,0.2)'
+        }
       }}
     >
       <CardContent>
@@ -43,20 +50,34 @@ const LiveUpdates = () => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            mb: 3
+            mb: 3,
+            background: `linear-gradient(90deg, ${theme.palette.primary.main}20, transparent)`,
+            p: 2,
+            borderRadius: 3
           }}
         >
           <AutorenewIcon
             sx={{
-              mr: 1,
+              mr: 2,
+              color: theme.palette.primary.main,
               animation: 'spin 2s linear infinite',
               '@keyframes spin': {
                 '0%': { transform: 'rotate(0deg)' },
                 '100%': { transform: 'rotate(360deg)' }
-              }
+              },
+              fontSize: '2rem'
             }}
           />
-          <Typography variant="h6" sx={{ fontWeight: 600 }}>
+          <Typography 
+            variant="h5" 
+            sx={{ 
+              fontWeight: 700,
+              background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              letterSpacing: '0.5px'
+            }}
+          >
             Live Transaction Updates
           </Typography>
         </Box>
@@ -68,7 +89,16 @@ const LiveUpdates = () => {
             alignItems="center"
             minHeight={200}
           >
-            <CircularProgress size={40} thickness={4} />
+            <CircularProgress 
+              size={50} 
+              thickness={4}
+              sx={{
+                color: theme.palette.primary.main,
+                '& .MuiCircularProgress-circle': {
+                  strokeLinecap: 'round'
+                }
+              }}
+            />
           </Box>
         ) : transactions.length === 0 ? (
           <Box
@@ -77,28 +107,39 @@ const LiveUpdates = () => {
               justifyContent: 'center',
               alignItems: 'center',
               minHeight: 200,
-              backgroundColor: 'rgba(0,0,0,0.02)',
-              borderRadius: 2
+              backgroundColor: 'rgba(0,0,0,0.03)',
+              borderRadius: 3,
+              border: '2px dashed rgba(0,0,0,0.1)'
             }}
           >
-            <Typography color="text.secondary" align="center">
+            <Typography 
+              color="text.secondary" 
+              align="center"
+              sx={{ 
+                fontSize: '1.1rem',
+                fontWeight: 500,
+                opacity: 0.7
+              }}
+            >
               No recent transactions
             </Typography>
           </Box>
         ) : (
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             {transactions.map((tx, index) => (
-              <Fade in={true} key={tx.transaction_id || index}>
+              <Fade in={true} key={tx.transaction_id || index} timeout={500}>
                 <Box
                   sx={{
-                    p: 2,
-                    borderRadius: 2,
-                    backgroundColor: 'rgba(255,255,255,0.7)',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
-                    transition: 'transform 0.2s ease-in-out',
+                    p: 2.5,
+                    borderRadius: 3,
+                    backgroundColor: 'rgba(255,255,255,0.9)',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
+                    transition: 'all 0.3s ease-in-out',
+                    border: '1px solid rgba(0,0,0,0.05)',
                     '&:hover': {
-                      transform: 'translateY(-2px)',
-                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                      transform: 'translateY(-3px) scale(1.01)',
+                      boxShadow: '0 8px 25px rgba(0,0,0,0.1)',
+                      backgroundColor: 'rgba(255,255,255,0.95)'
                     }
                   }}
                 >
@@ -107,30 +148,37 @@ const LiveUpdates = () => {
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
-                      mb: 1
+                      mb: 1.5
                     }}
                   >
                     <Typography
-                      variant="subtitle2"
+                      variant="subtitle1"
                       sx={{
-                        fontWeight: 600,
-                        color: theme.palette.primary.main
+                        fontWeight: 700,
+                        color: theme.palette.primary.dark,
+                        letterSpacing: '0.3px',
+                        fontSize: '0.95rem'
                       }}
                     >
                       Transaction ID: {tx.transaction_id?.slice(0, 15)}...
                     </Typography>
                     <Chip
                       icon={tx.result === 'SUCCESS' ? 
-                        <CheckCircleIcon sx={{ fontSize: 20, verticalAlign: 'middle' }} /> : 
-                        <ErrorIcon sx={{ fontSize: 20, verticalAlign: 'middle' }} />
+                        <CheckCircleIcon sx={{ fontSize: 18 }} /> : 
+                        <ErrorIcon sx={{ fontSize: 18 }} />
                       }
                       label={tx.result}
                       size="small"
                       color={tx.result === 'SUCCESS' ? 'success' : 'error'}
                       sx={{ 
-                        fontWeight: 500,
+                        fontWeight: 600,
+                        padding: '8px 4px',
+                        height: '28px',
                         '& .MuiChip-icon': {
-                          marginLeft: '4px'
+                          marginLeft: '6px'
+                        },
+                        '& .MuiChip-label': {
+                          fontSize: '0.8rem'
                         }
                       }}
                     />
@@ -139,13 +187,31 @@ const LiveUpdates = () => {
                     sx={{
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'space-between'
+                      justifyContent: 'space-between',
+                      mt: 1
                     }}
                   >
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography 
+                      variant="body2" 
+                      sx={{
+                        color: theme.palette.text.secondary,
+                        fontWeight: 500,
+                        fontSize: '0.9rem'
+                      }}
+                    >
                       Fee: {tx.charged_tx_fee} HBAR
                     </Typography>
-                    <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
+                    <Typography 
+                      variant="caption" 
+                      sx={{ 
+                        color: theme.palette.primary.main,
+                        fontWeight: 500,
+                        backgroundColor: theme.palette.primary.light + '20',
+                        padding: '4px 8px',
+                        borderRadius: '12px',
+                        fontSize: '0.75rem'
+                      }}
+                    >
                       {new Date().toLocaleTimeString()}
                     </Typography>
                   </Box>
